@@ -1,5 +1,6 @@
 package kumo.myapplication;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -58,7 +60,18 @@ public class ConversacionActivity extends AppCompatActivity {
 
                                 recView.setLayoutManager(
                                         new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-                                // TODO deal with persons
+
+                                FeedReaderDbHelper usdbh = new FeedReaderDbHelper(getApplicationContext(), "myapplication.db", null, 1);
+
+                                SQLiteDatabase db = usdbh.getWritableDatabase();
+
+                                if(db != null)
+                                {
+                                    String json = new Gson().toJson(persons);
+
+                                    db.execSQL("INSERT INTO Cache (id, texto) " + "VALUES (" + 1 + ", '" + json +"')");
+
+                                }
                             }
 
                         }, new Response.ErrorListener() {
