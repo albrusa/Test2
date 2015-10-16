@@ -61,7 +61,7 @@ public class ConversacionActivity extends AppCompatActivity {
                                 recView.setLayoutManager(
                                         new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
-                                FeedReaderDbHelper usdbh = new FeedReaderDbHelper(getApplicationContext(), "myapplication.db", null, 1);
+                                /*FeedReaderDbHelper usdbh = new FeedReaderDbHelper(getApplicationContext(), "myapplication.db", null, 1);
 
                                 SQLiteDatabase db = usdbh.getWritableDatabase();
 
@@ -71,7 +71,7 @@ public class ConversacionActivity extends AppCompatActivity {
 
                                     db.execSQL("INSERT INTO Cache (id, texto) " + "VALUES (" + 1 + ", '" + json +"')");
 
-                                }
+                                }*/
                             }
 
                         }, new Response.ErrorListener() {
