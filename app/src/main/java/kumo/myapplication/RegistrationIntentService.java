@@ -36,7 +36,7 @@ public class RegistrationIntentService extends IntentService  {
             // [END get_token]
             Log.i(TAG, "GCM Registration Token: " + token);
 
-            
+
             sendRegistrationToServer(token);
 
             // Subscribe to topic channels
