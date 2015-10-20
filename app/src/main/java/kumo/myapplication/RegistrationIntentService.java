@@ -42,6 +42,8 @@ public class RegistrationIntentService extends IntentService  {
             // Subscribe to topic channels
             subscribeTopics(token);
 
+
+            sharedPreferences.edit().putString(QuickstartPreferences.ID_TOKEN,token).apply();
             // You should store a boolean that indicates whether the generated token has been
             // sent to your server. If the boolean is false, send the token to your server,
             // otherwise your server should have already received the token.

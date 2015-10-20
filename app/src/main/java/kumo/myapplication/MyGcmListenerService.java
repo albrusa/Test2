@@ -69,7 +69,9 @@ public class MyGcmListenerService  extends GcmListenerService {
                 .setContentTitle("GCM Message")
                 .setContentText(message)
                 .setAutoCancel(true)
+                .setPriority(0)
                 .setSound(defaultSoundUri)
+                .setVisibility(-1)
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =

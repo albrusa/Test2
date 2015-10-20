@@ -43,8 +43,9 @@ public class ConversacionActivity extends AppCompatActivity {
         recView = (RecyclerView) findViewById(R.id.RecView);
         recView.setHasFixedSize(true);
 
-       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         GsonRequest<Usuario[]> getPersons =
                 new GsonRequest<Usuario[]>("https://www.kmed.es/Android_API/Home/Usuario", Usuario[].class,
