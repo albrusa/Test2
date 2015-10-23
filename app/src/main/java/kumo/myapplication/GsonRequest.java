@@ -1,7 +1,9 @@
 package kumo.myapplication;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -9,35 +11,54 @@ import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
+import com.google.gson.JsonObject;
 
 /**
  * Volley GET request which parses JSON server response into Java object.
  */
-public class GsonRequest<T> extends Request<T> {
+public class GsonRequest<T> extends JsonRequest<T> {
 
     /** JSON parsing engine */
     protected final Gson gson;
-
     /** class of type of response */
     protected final Class<T> clazz;
-
     /** result listener */
-    private final Listener<T> listener;
+    private final Response.Listener<T> mlistener;
+    private Map<String, String> mHeaders;
 
-    public GsonRequest(String url, Class<T> clazz, Listener<T> listener,
-                       ErrorListener errorListener) {
-        super(Method.GET, url, errorListener);
+    private JsonObject parameters = null;
 
-        this.clazz = clazz;
-        this.listener = listener;
-        this.gson = new Gson();
+
+
+    public GsonRequest(int method, String url, Class<T> classType, JsonObject jsonRequest,
+                       Response.Listener<T> listener, Response.ErrorListener errorListener) {
+        this(method, url, classType, null, jsonRequest, listener, errorListener);
+    }
+
+    public GsonRequest(int method, String url, Class<T> classType, Map<String, String> headers,
+                       JsonObject jsonRequest, Response.Listener<T> listener,
+                       Response.ErrorListener errorListener) {
+        super(method, url, (jsonRequest == null) ? null : jsonRequest.toString(), listener,
+                errorListener);
+        gson = new Gson();
+        clazz = classType;
+        mHeaders = headers;
+        mlistener = listener;
     }
 
     @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        return mHeaders != null ? mHeaders : super.getHeaders();
+    }
+
+
+    @Override
     protected void deliverResponse(T response) {
-        listener.onResponse(response);
+        mlistener.onResponse(response);
     }
 
     @Override

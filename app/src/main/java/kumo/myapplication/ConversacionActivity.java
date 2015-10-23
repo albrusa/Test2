@@ -19,12 +19,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Console;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ConversacionActivity extends AppCompatActivity {
@@ -47,8 +49,17 @@ public class ConversacionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        HashMap<String, String> params = new HashMap<String, String>();
+        //params.put("token", "AbCdEfGh123456");
+
+        final JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("_codigo_usuario", "albert");
+        jsonObject.addProperty("_clave", "rubio");
+
+
+
         GsonRequest<Usuario[]> getPersons =
-                new GsonRequest<Usuario[]>("https://www.kmed.es/Android_API/Home/Usuario", Usuario[].class,
+                new GsonRequest<Usuario[]>(Request.Method.POST,"http://localhost:32766/Usuarios/autentificar_4", Usuario[].class,params,jsonObject,
 
                         new Response.Listener<Usuario[]>() {
                             @Override

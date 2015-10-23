@@ -8,6 +8,7 @@ public class Usuario {
     String Nombre;
     String Apellidos;
     String DNI;
+    String Imagen;
 
     public Usuario(){
 

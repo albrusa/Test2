@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +30,38 @@ public class AdapterUsuarioListado extends RecyclerView.Adapter<AdapterUsuarioLi
 
         private TextView txtTitulo;
         private TextView txtSubtitulo;
+        RequestQueue mRequestQueue;
+        NetworkImageView mNetworkImageView;
+        ImageLoader mImageLoader;
+        private static final String IMAGE_URL =
+                "http://developer.android.com/images/training/system-ui.png";
+
+
 
         public AdapterElementoViewHolder(View itemView) {
             super(itemView);
 
             txtTitulo = (TextView)itemView.findViewById(R.id.LblTitulo);
             txtSubtitulo = (TextView)itemView.findViewById(R.id.LblSubTitulo);
+            mNetworkImageView = (NetworkImageView) itemView.findViewById(R.id.networkImageView);
+
+
         }
 
         public void bindTitular(Usuario t) {
             txtTitulo.setText(t.Nombre);
             txtSubtitulo.setText(t.Apellidos);
+
+            ImageLoader.ImageCache imageCache = new LruBitmapCache(itemView.getContext());
+
+            mImageLoader = HttpCola.getInstance(itemView.getContext()).getImageLoader();
+
+            if(t.Imagen != null && t.Imagen != "")
+            {
+                mNetworkImageView.setImageUrl(t.Imagen, mImageLoader);
+            }
+
+
         }
     }
 
