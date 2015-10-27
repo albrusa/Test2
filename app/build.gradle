@@ -28,5 +28,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:+'
     compile 'com.google.code.gson:gson:2.2.+'
     compile "com.google.android.gms:play-services:8.1.0"
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
     compile project(':volley')
 }

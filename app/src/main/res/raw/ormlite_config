@@ -1,0 +1,23 @@
+# --table-start--
+dataClass=kumo.myapplication.Usuario
+tableName=Usuario
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=Nombre
+# --field-end--
+# --field-start--
+fieldName=Apellidos
+# --field-end--
+# --field-start--
+fieldName=DNI
+# --field-end--
+# --field-start--
+fieldName=Imagen
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
