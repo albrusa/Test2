@@ -23,20 +23,10 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.inputmethodservice.KeyboardView
-        android:id="@+id/keyboardview"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:visibility="visible" />
-   <!-- <FrameLayout
+    <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />-->
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

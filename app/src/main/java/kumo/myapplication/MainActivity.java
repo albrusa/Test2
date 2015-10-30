@@ -47,25 +47,14 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new ConversacionesListado();
         boolean fragmentTransaction = true;
 
-        Keyboard mKeyboard= new Keyboard(this,R.layout.num_keyboard);
-
-        // Lookup the KeyboardView
-        KeyboardView mKeyboardView= (KeyboardView)findViewById(R.id.keyboardview);
-        // Attach the keyboard to the view
-        mKeyboardView.setKeyboard(mKeyboard);
-        // Do not show the preview balloons
-        mKeyboardView.setPreviewEnabled(false);
-
-        mKeyboardView.setOnKeyboardActionListener(mOnKeyboardActionListener);
-
-        /*if(fragmentTransaction) {
+        if(fragmentTransaction) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, fragment)
                     .commit();
 
             getSupportActionBar().setTitle(R.string.Conversaciones);
             navView.getMenu().getItem(0).setChecked(true);
-        }*/
+        }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String token = sharedPreferences.getAll().get(QuickstartPreferences.ID_TOKEN).toString();
@@ -127,14 +116,14 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
 
-                        /*if (fragmentTransaction) {
+                        if (fragmentTransaction) {
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.content_frame, fragment)
                                     .commit();
 
                             menuItem.setChecked(true);
                             getSupportActionBar().setTitle(menuItem.getTitle());
-                        }*/
+                        }
 
                         drawerLayout.closeDrawers();
 
@@ -157,32 +146,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private KeyboardView.OnKeyboardActionListener mOnKeyboardActionListener = new KeyboardView.OnKeyboardActionListener() {
-        @Override public void onKey(int primaryCode, int[] keyCodes) {
-            Log.d("Key:", Integer.toString(primaryCode));
-        }
 
-        @Override public void onPress(int arg0) {
-
-        }
-
-        @Override public void onRelease(int primaryCode) {
-        }
-
-        @Override public void onText(CharSequence text) {
-        }
-
-        @Override public void swipeDown() {
-        }
-
-        @Override public void swipeLeft() {
-        }
-
-        @Override public void swipeRight() {
-        }
-
-        @Override public void swipeUp() {
-        }
-    };
 
 }

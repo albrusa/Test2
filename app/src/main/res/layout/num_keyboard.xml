@@ -6,7 +6,7 @@
     android:keyHeight="10%p" >
 
     <Row>
-        <Key android:codes="1"    android:keyLabel="1" android:keyEdgeFlags="left" />
+        <Key android:codes="1"   android:keyLabel="1" android:keyEdgeFlags="left" />
         <Key android:codes="2"    android:keyLabel="2" />
         <Key android:codes="3"    android:keyLabel="3" />
     </Row>
