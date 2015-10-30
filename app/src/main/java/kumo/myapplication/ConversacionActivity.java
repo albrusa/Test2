@@ -67,9 +67,9 @@ public class ConversacionActivity extends AppCompatActivity {
            usu.Nombre = "Albert";
            usu.Apellidos = "Rubio";
            usu.DNI = "4123123";
-           usu.Imagen = "asdasdsad";
+           usu.Imagen_Perfil = "asdasdsad";
 
-           usuarioDao.create(usu);
+          // usuarioDao.create(usu);
 
            Usuario usu2 = usuarioDao.queryForId(2);
 
@@ -103,7 +103,7 @@ public class ConversacionActivity extends AppCompatActivity {
 
         HashMap<String, String> params = new HashMap<String, String>();
 
-        final JsonObject jsonObject = new JsonObject();
+        /*final JsonObject jsonObject = new JsonObject();
 
 
         //Sense parametres
@@ -133,41 +133,33 @@ public class ConversacionActivity extends AppCompatActivity {
                 });
 
         HttpCola.getInstance(this).addToRequestQueue(getPersons);
-
+*/
         //Amb parametres
-        /*
+
 
          final JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("_codigo_usuario", "albert");
-        jsonObject.addProperty("_clave", "rubio");
+        jsonObject.addProperty("_codigo_acceso", "nmonfulleda");
+        jsonObject.addProperty("_prefijo", "34");
+        jsonObject.addProperty("_movil", "650595821");
 
-        GsonRequest<Usuario[]> getPersons =
-                new GsonRequest<Usuario[]>(Request.Method.POST,"http://localhost:32766/Usuarios/autentificar_4", Usuario[].class,params,jsonObject,
 
-                        new Response.Listener<Usuario[]>() {
+
+        GsonRequest<Configuracion[]> getPersons =
+                new GsonRequest<Configuracion[]>(Request.Method.POST,"http://localhost:32765/Usuarios/obt_aplicaciones", Configuracion[].class,params,jsonObject,
+
+                        new Response.Listener<Configuracion[]>() {
                             @Override
-                            public void onResponse(Usuario[] response) {
-                                List<Usuario> persons = Arrays.asList(response);
+                            public void onResponse(Configuracion[] response) {
+                                List<Configuracion> persons = Arrays.asList(response);
 
-                                final AdapterUsuarioListado adaptador = new AdapterUsuarioListado(persons);
+                                configuraciones_respuesta(persons);
+                                /*final AdapterConfiguracionListado adaptador = new AdapterConfiguracionListado(persons);
 
                                 recView.setAdapter(adaptador);
 
                                 recView.setLayoutManager(
-                                        new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+                                        new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));*/
 
-                                FeedReaderDbHelper usdbh = new FeedReaderDbHelper(getApplicationContext(), "myapplication.db", null, 1);
-
-                                SQLiteDatabase db = usdbh.getWritableDatabase();
-
-                                if(db != null)
-                                {
-                                    String json = new Gson().toJson(persons);
-
-                                    db.execSQL("INSERT INTO Cache (id, texto) " + "VALUES (" + 1 + ", '" + json +"')");
-
-
-                                }
                             }
 
                         }, new Response.ErrorListener() {
@@ -180,7 +172,63 @@ public class ConversacionActivity extends AppCompatActivity {
                 });
 
         HttpCola.getInstance(this).addToRequestQueue(getPersons);
-        */
+
     }
+
+    protected void configuraciones_respuesta(List<Configuracion> _configuracion)
+    {
+
+        final AdapterConfiguracionListado adaptador = new AdapterConfiguracionListado(_configuracion);
+
+        recView.setAdapter(adaptador);
+
+        recView.setLayoutManager(
+                new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+
+
+        HashMap<String, String> params = new HashMap<String, String>();
+
+
+
+        final JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("_id_aplicacion", _configuracion.get(0).Id_Aplicacion);
+        jsonObject.addProperty("_id_usuario", _configuracion.get(0).Id_Usuario);
+        jsonObject.addProperty("_id_usuario_clase", _configuracion.get(0).Id_Usuario_Clase);
+        jsonObject.addProperty("_clave", "nmonfulleda");
+
+
+
+        GsonRequest<Usuario> getPersons2 =
+                new GsonRequest<Usuario>(Request.Method.POST,"http://localhost:32765/Usuarios/autentificar", Usuario.class,params,jsonObject,
+
+                        new Response.Listener<Usuario>() {
+                            @Override
+                            public void onResponse(Usuario response) {
+                                Usuario persons = response;
+                                //List<Usuario> persons = Arrays.asList(response);
+
+                                Log.d("acabem","hem pintat tot");
+
+                                /*final AdapterConfiguracionListado adaptador = new AdapterConfiguracionListado(persons);
+
+                                recView.setAdapter(adaptador);
+
+                                recView.setLayoutManager(
+                                        new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));*/
+
+                            }
+
+                        }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("objeto",error.getMessage());
+                        // TODO deal with error
+                    }
+                });
+
+        HttpCola.getInstance(this).addToRequestQueue(getPersons2);
+    }
+
 }
 

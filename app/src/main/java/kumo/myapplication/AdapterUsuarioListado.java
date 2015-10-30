@@ -56,9 +56,9 @@ public class AdapterUsuarioListado extends RecyclerView.Adapter<AdapterUsuarioLi
 
             mImageLoader = HttpCola.getInstance(itemView.getContext()).getImageLoader();
 
-            if(t.Imagen != null && t.Imagen != "")
+            if(t.Imagen_Perfil != null && t.Imagen_Perfil != "")
             {
-                mNetworkImageView.setImageUrl(t.Imagen, mImageLoader);
+                mNetworkImageView.setImageUrl(t.Imagen_Perfil, mImageLoader);
             }
 
 

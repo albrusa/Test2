@@ -13,17 +13,26 @@ public class Usuario {
     @DatabaseField(id = true)
     Integer id;
 
+
+    String Codigo_Acceso;
+    String Clave;
+
     @DatabaseField
     String Nombre;
 
     @DatabaseField
     String Apellidos;
 
+    String Prefijo;
+    String Tlf_Movil;
+    String Correo;
+    String Idioma;
+
     @DatabaseField
     String DNI;
 
     @DatabaseField
-    String Imagen;
+    String Imagen_Perfil;
 
     public Usuario(){
 
