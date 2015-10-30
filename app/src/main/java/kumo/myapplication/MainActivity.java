@@ -3,8 +3,6 @@ package kumo.myapplication;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,13 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.android.gms.iid.InstanceID;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -104,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
                                 fragment = new DocumentosListado();
                                 fragmentTransaction = true;
                                 break;
-                            /*case R.id.menu_seccion_3:
-                                fragment = new Fragment3();
+                            case R.id.menu_seccion_3:
+                                fragment = new TecladoFragment();
                                 fragmentTransaction = true;
-                                break;*/
+                                break;
                             case R.id.menu_opcion_1:
                                 Log.i("NavigationView", "Pulsada opción 1");
                                 break;

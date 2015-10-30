@@ -14,6 +14,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:focusable="true"
+        android:theme="@style/Base.Theme.AppCompat.Light"
+        android:background="@color/colorPrimary"
         android:focusableInTouchMode="true"
         android:visibility="visible" />
 </FrameLayout>
